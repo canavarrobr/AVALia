@@ -1,0 +1,105 @@
+/* Reset básico */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Container */
+.container {
+  width: 95%;
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+}
+
+/* Cabeçalho */
+.titulo-app {
+  font-size: 2rem;
+  color: #00ff88;
+  margin: 0;
+}
+
+.subtitulo-app {
+  font-size: 1rem;
+  color: #ccc;
+}
+
+.cabecalho {
+  text-align: center;
+  padding: 1em;
+  border-bottom: 1px solid #333;
+}
+
+/* Chat */
+.chat {
+  flex: 1;
+  padding: 1em;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.mensagem {
+  max-width: 70%;
+  padding: 0.8em 1.2em;
+  border-radius: 15px;
+  line-height: 1.4;
+  animation: fadeIn 0.5s ease;
+}
+
+.mensagem.bot {
+  background: #222;
+  align-self: flex-start;
+}
+
+.mensagem.user {
+  background: #00ff88;
+  color: #111;
+  align-self: flex-end;
+}
+
+/* Input */
+.input-area {
+  display: flex;
+  padding: 0.8em;
+  border-top: 1px solid #333;
+  background: #111;
+}
+
+.input-area input {
+  flex: 1;
+  padding: 0.8em;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+}
+
+.input-area button {
+  margin-left: 0.5em;
+  padding: 0.8em 1.2em;
+  border: none;
+  border-radius: 10px;
+  background: #00ff88;
+  color: #111;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.input-area button:hover {
+  background: #00cc6a;
+}
+
+/* Animação */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

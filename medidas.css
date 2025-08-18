@@ -1,0 +1,86 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  width: 95%;
+  max-width: 700px;
+  padding: 2em;
+}
+
+.titulo-app {
+  font-size: 2rem;
+  color: #00ff88;
+  margin: 0;
+}
+
+.subtitulo-app {
+  color: #ccc;
+  margin-bottom: 1em;
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  margin: 2em 0;
+  padding: 1.5em;
+  background: #1a1a1a;
+  border-radius: 15px;
+  box-shadow: 0px 0px 10px rgba(0, 255, 136, 0.3);
+}
+
+.formulario h2 {
+  color: #ff006a;
+  margin-top: 0;
+}
+
+label {
+  font-weight: bold;
+}
+
+input {
+  background: transparent;
+  border: none;
+  border-bottom: 2px dashed #555;
+  color: #fff;
+  font-size: 1rem;
+  padding: 0.5em 0;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+input:focus {
+  border-bottom: 2px solid #00ff88;
+}
+
+
+.dica {
+  font-size: 0.85rem;
+  color: #aaa;
+}
+
+.botao-principal {
+  margin-top: 2em;
+  padding: 1em 2em;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 10px;
+  background: #00ff88;
+  color: #111;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.botao-principal:hover {
+  background: #00cc6a;
+  transform: scale(1.05);
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitCheck - Resultados</title>
+  <link rel="stylesheet" href="resultados.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+
+</head>
+<body class="tela-resultados">
+  
+  <div class="container">
+    <!-- Cabeçalho -->
+    <header class="cabecalho">
+      <h1 class="titulo-app">📊 Resultados da Avaliação</h1>
+      <p class="subtitulo-app">Veja suas métricas e recomendações</p>
+    </header>
+
+    <!-- Cards -->
+    <section class="cards" id="cards">
+      <!-- Preenchido dinamicamente pelo JS -->
+    </section>
+
+    <!-- Gráfico -->
+    <section class="graficos">
+      <canvas id="grafico-composicao"></canvas>
+    </section>
+
+    <!-- Recomendações -->
+    <section class="recomendacoes" id="recomendacoes">
+      <!-- Texto gerado no JS -->
+    </section>
+
+    <!-- Botões -->
+    <footer class="rodape">
+      <button id="btn-voltar" class="botao">⬅ Nova Avaliação</button>
+      <button id="btn-exportar" class="botao">📄 Exportar PDF</button>
+      <button id="btn-json" class="botao">⚙️ Exportar JSON</button>
+    </footer>
+  </div>
+
+  <script src="resultados.js"></script>
+</body>
+</html>

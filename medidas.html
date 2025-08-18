@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitCheck - Medidas</title>
+  <link rel="stylesheet" href="medidas.css">
+</head>
+<body class="tela-medidas">
+  
+  <div class="container">
+    <!-- Cabeçalho -->
+    <header class="cabecalho">
+      <h1 class="titulo-app">📏 Medidas Corporais</h1>
+      <p class="subtitulo-app">Preencha suas medidas conforme instruções</p>
+    </header>
+
+    <!-- Formulário comum -->
+    <form id="form-comum" class="formulario">
+      <h2>Dados Comuns:</h2>
+      <label>Peso (kg)</label>
+      <input type="number" id="peso" step="0.1">
+      <span class="dica">⚖️ Use balança comum, de preferência pela manhã.</span>
+        <br>
+      <label>Altura (cm)</label>
+      <input type="number" id="altura">
+      <span class="dica">📏 Meça encostado na parede, sem sapatos.</span>
+        <br>
+      <label>Cintura (cm)</label>
+      <input type="number" id="cintura">
+      <span class="dica">📍 Meça no ponto mais estreito do abdômen.</span>
+        <br>
+      <label>Quadril (cm)</label>
+      <input type="number" id="quadril">
+      <span class="dica">📍 Meça no ponto mais largo dos glúteos.</span>
+        <br>
+      <label>Pescoço (cm)</label>
+      <input type="number" id="pescoco">
+      <span class="dica">📍 Meça logo abaixo da maçã de Adão.</span>
+    </form>
+
+    <!-- Formulário profissional -->
+    <form id="form-profissional" class="formulario">
+      <h2>Profissional</h2>
+      <p>Além dos dados comuns, insira as dobras cutâneas:</p>
+
+      <label>Tríceps (mm)</label>
+      <input type="number" id="triceps">
+      <label>Peito (mm)</label>
+      <input type="number" id="peito">
+      <label>Abdômen (mm)</label>
+      <input type="number" id="abdomen">
+      <label>Coxa (mm)</label>
+      <input type="number" id="coxa">
+      <label>Subescapular (mm)</label>
+      <input type="number" id="subescapular">
+      <label>Supra-ilíaca (mm)</label>
+      <input type="number" id="suprailiaca">
+      <label>Axilar média (mm)</label>
+      <input type="number" id="axilar">
+    </form>
+
+    <button id="btn-calcular" class="botao-principal">Calcular Resultados</button>
+  </div>
+
+  <script src="medidas.js"></script>
+</body>
+</html>

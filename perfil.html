@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitCheck - Seleção de Perfil</title>
+  <link rel="stylesheet" href="perfil.css">
+    <script src="perfil.js"></script>
+
+</head>
+<body class="tela-perfil">
+  
+  <div class="container">
+    <!-- Cabeçalho -->
+    <header class="cabecalho">
+      <h1 class="titulo-app">🏋️ AVALℹ️🅰️</h1>
+      <p class="subtitulo-app">Quem está realizando a avaliação?</p>
+    </header>
+
+    <!-- Opções de perfil -->
+    <main class="conteudo-principal">
+      <div class="botoes-perfil">
+        <button id="btn-profissional" class="botao-perfil profissional">
+          👨‍🏫 Sou Profissional<br><span class="descricao">Com equipamentos (balança, fita, adipômetro)</span>
+        </button>
+        
+        <button id="btn-comum" class="botao-perfil comum">
+          🏃 Sou Usuário Comum<br><span class="descricao">Sem equipamentos, apenas dados básicos</span>
+        </button>
+      </div>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="rodape">
+      <button onclick="voltarInicio()" class="botao-voltar">⬅ Voltar</button>
+    </footer>
+  </div>
+
+  <script src="perfil.js"></script>
+</body>
+</html>

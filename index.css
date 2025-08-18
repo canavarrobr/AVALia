@@ -1,0 +1,49 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+  color: #fff;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  text-align: center;
+}
+
+.titulo-app {
+  font-size: 3rem;
+  color: #00ff88;
+  margin-bottom: 0.2em;
+}
+
+.subtitulo-app {
+  font-size: 1.2rem;
+  color: #ccc;
+}
+
+.botao-principal {
+  margin-top: 2em;
+  padding: 1em 2.5em;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  background: #00ff88;
+  color: #111;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.botao-principal:hover {
+  background: #00cc6a;
+  transform: scale(1.05);
+}
+
+.rodape {
+  margin-top: 4em;
+  font-size: 0.9rem;
+  color: #888;
+}
