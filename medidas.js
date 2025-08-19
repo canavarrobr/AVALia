@@ -7,7 +7,7 @@ const perfil = localStorage.getItem("perfil");
 const anamnese = JSON.parse(localStorage.getItem("anamnese")) || {};
 const nome = anamnese["Qual seu nome?"] || "usuario";
 const idade = parseInt(anamnese["Qual sua idade?"]) || 25;
-const sexoStr = anamnese["RESPONDA COM: M OU F OU OUTRO Qual seu sexo? (masculino, feminino, outro = imprecisão)"] || "Não informado";
+const sexoStr = anamnese["Qual seu sexo?"] || "Não informado";
 
 // Normaliza sexo: m | f | n (não informado/outro)
 let sexo = (sexoStr || "").trim().toLowerCase();
@@ -57,36 +57,42 @@ document.getElementById("btn-calcular").addEventListener("click", () => {
     resultados.tmb = Math.round(10 * peso + 6.25 * altura_cm - 5 * idade); // neutro
   }
 
-  // ===== % Gordura - Método Marinha EUA (perfil comum) =====
-  if (perfil === "comum") {
-    const toIn = v => v / 2.54; // conversão para inches
-    const altura_in = toIn(altura_cm);
-    const cintura_in = toIn(cintura_cm);
-    const quadril_in = toIn(quadril_cm);
-    const pescoco_in = toIn(pescoco_cm);
+ // ===== % Gordura - Método Marinha EUA (US Navy Body Fat) =====
+if (perfil === "comum") {
+  const toIn = v => v / 2.54; // conversão cm -> polegadas
+  const altura_in = toIn(altura_cm);
+  const cintura_in = toIn(cintura_cm);
+  const quadril_in = toIn(quadril_cm || 0);
+  const pescoco_in = toIn(pescoco_cm);
 
-    let bf = "N/A";
+  let bf = "N/A";
 
-    if (sexo === "m") {
-      const A = cintura_in - pescoco_in;
-      if (A > 0 && altura_in > 0) {
-        bf = (86.010 * Math.log10(A) - 70.041 * Math.log10(altura_in) + 36.76).toFixed(2);
-      }
-    } else if (sexo === "f") {
-      const A = cintura_in + quadril_in - pescoco_in;
-      if (A > 0 && altura_in > 0) {
-        bf = (163.205 * Math.log10(A) - 97.684 * Math.log10(altura_in) - 78.387).toFixed(2);
-      }
-    } else {
-      const A = cintura_in - pescoco_in; // fallback
-      if (A > 0 && altura_in > 0) {
-        bf = (86.010 * Math.log10(A) - 70.041 * Math.log10(altura_in) + 36.76).toFixed(2);
-      }
+  if (sexo === "m") {
+    // Fórmula oficial US Navy para homens
+    const A = cintura_in - pescoco_in;
+    if (A > 0 && altura_in > 0) {
+      bf = (
+        86.010 * Math.log10(A) -
+        70.041 * Math.log10(altura_in) +
+        36.76
+      ).toFixed(2);
     }
-
-    resultados.gordura = bf;
-    resultados.metodoGordura = "Marinha EUA";
+  } else if (sexo === "f") {
+    // Fórmula oficial US Navy para mulheres
+    const A = cintura_in + quadril_in - pescoco_in;
+    if (A > 0 && altura_in > 0) {
+      bf = (
+        163.205 * Math.log10(A) -
+        97.684 * Math.log10(altura_in) -
+        78.387
+      ).toFixed(2);
+    }
   }
+
+  resultados.gordura = bf;
+  resultados.metodoGordura = "Marinha EUA (US Navy Body Fat). O MÉTODO PROFISSIONAL (POLLOCK) PODE OBTER RESULTADOS SIGNIFICANTEMENTE MAIS FIÉIS À REALIDADE";
+}
+
 
   // ===== PROFISSIONAL: Dobras Cutâneas (Pollock 7) =====
   if (perfil === "profissional") {
@@ -128,8 +134,8 @@ document.getElementById("btn-calcular").addEventListener("click", () => {
   }
 
   // ===== Hidratação =====
-  const coposStr = anamnese["Quantos copos de água você bebe por dia?(Copos de 250ml; Responda apenas com o numeral Ex: 6)"] || "0";
-  const copos = parseInt(String(coposStr).replace(/\D/g, "")) || 0;
+  
+  const copos = parseInt(anamnese["Quantos copos de água você bebe por dia?(Copos de 250ml; 6 copos = 1.5L)"]) || 0;
   const agua_ml = copos * 250;
   const agua_min_ml = Math.round(peso * 35);
 

@@ -9,8 +9,10 @@ const recomendacoesDiv = document.getElementById("recomendacoes");
 const anamnese = JSON.parse(localStorage.getItem("anamnese")) || {};
 const nome = anamnese["Qual seu nome?"] || "usuario";
 const idade = parseInt(anamnese["Qual sua idade?"]) || 25;
-const sexo = anamnese["RESPONDA COM: M OU F OU OUTRO Qual seu sexo? (masculino, feminino, outro = imprecisão)"] || "Não informado";
-const copo = anamnese["Quantos copos de água você bebe por dia?(Copos de 250ml; Responda apenas com o numeral Ex: 6)"];
+const sexo = anamnese["Qual seu sexo?"] || "Não informado";
+const copo = anamnese["Quantos copos de água você bebe por dia?(Copos de 250ml; 6 copos = 1.5L)"];
+
+let questionario = localStorage.getItem('tipoQuestionario') || 'completa'; // padrão completa
 
 
 // =========================
@@ -59,27 +61,46 @@ if (sexo.toLowerCase().startsWith("m") && idade >= 45) pontos += 2;
 if (sexo.toLowerCase().startsWith("f") && idade >= 55) pontos += 2;
 
 // Perguntas da anamnese
-const doresEsforco = (anamnese["Já sentiu dores no peito, falta de ar ou tontura durante esforço físico? Responda com S ou N"] || "").toLowerCase();
+const doresEsforco = (anamnese["Já sentiu dores no peito, falta de ar ou tontura durante esforço físico?"] || "").toLowerCase();
 if (doresEsforco.includes("s")) pontos += 3;
 
-const historicoCardiaco = (anamnese["Há pessoas com problemas de coração, cardiopatas, em sua família? Responda com S ou N"] || "").toLowerCase();
-if (historicoCardiaco.includes("s")) pontos += 2;
+const sente_palpitacoes_ou_desmaio = (anamnese["Já sentiu palpitações ou desmaios?"] || "").toLowerCase();
+if (sente_palpitacoes_ou_desmaio.includes("s")) pontos += 1.5;
 
-const pressao = (anamnese["Já foi diagnosticado(a) com pressão alta, colesterol alto ou diabetes? Responda com S ou N"] || "").toLowerCase();
+const pratica_cardio = (anamnese["Você pratica atividades aeróbicas, cardio?"] || "").toLowerCase();
+if (pratica_cardio.includes("s")) pontos -= 1.5;
+else pontos += 0.5;
+
+
+const frequencia_de_atividade_fisica = parseInt(anamnese["Com qual frequência semanal você pratica atividades físicas?"]) || 25;
+if (frequencia_de_atividade_fisica < 2) pontos += 1.5;
+else if (frequencia_de_atividade_fisica < 4) pontos += 0;
+else pontos -= 1.5;
+
+
+const claudificacao = (anamnese["Tem problemas de circulação, como varizes ou inchaço nas pernas?"] || "").toLowerCase();
+if (claudificacao.includes("s")) pontos += 1.5;
+
+const historicoCardiaco = (anamnese["Há pessoas com problemas de coração, cardiopatas, em sua família?"] || "").toLowerCase();
+if (historicoCardiaco.includes("s")) pontos += 1.5;
+
+const pressao = (anamnese["Já foi diagnosticado(a) com pressão alta, colesterol alto ou diabetes?"] || "").toLowerCase();
 if (pressao.includes("s")) pontos += 3;
+if (pressao.includes("n")) pontos -= 1.5;
 
 const tabagismo = (anamnese["Você fuma ou ingere bebida alcoólica? Responda com F para frequentemente, M para moderadamente, N para Não"] || "").toLowerCase();
 if (tabagismo.includes("f")) pontos += 3;
 else if (tabagismo.includes("m")) pontos += 1;
 
-const industrializados = (anamnese["Costuma consumir alimentos industrializados (enlatados, congelados, fast-food)? Responda com S ou N"] || "").toLowerCase();
-if (industrializados.includes("s")) pontos += 1;
+const industrializados = (anamnese["Costuma consumir alimentos industrializados (enlatados, congelados, fast-food)?"] || "").toLowerCase();
+if (industrializados.includes("s")) pontos += 0.5;
+if (industrializados.includes("n")) pontos -= 1;
 
 // Classificação final
 let risco = "Baixo";
 if (pontos >= 7) risco = "Alto";
-else if (pontos >= 3) risco = "Moderado";
-
+else if (pontos >= 5) risco = "Moderado";
+else if (pontos >= 3) risco = "Moderado-Baixo";
 
 // =========================
 // Recomendações
@@ -114,7 +135,7 @@ if (medidas.tmb !== "N/A") {
 // Risco coronariano
 if (risco === "Alto") {
   recomendacoes += "⚠️ Alto risco coronariano: consulte um médico para avaliação detalhada e monitoramento.<br>";
-} else if (risco === "Moderado") {
+} else if (risco === "Moderado" || risco === "Moderado-Baixo") {
   recomendacoes += "⚠️ Risco coronariano moderado: cuide da alimentação, reduza consumo de industrializados e mantenha exercícios.<br>";
 } else {
   recomendacoes += "✅ Risco coronariano baixo: mantenha estilo de vida saudável.<br>";
@@ -170,14 +191,38 @@ document.getElementById("btn-voltar").addEventListener("click", () => {
   window.location.href = "index.html";
 });
 
-// Exportar JSON
+// Exportar JSON completo (Anamnese + Medidas + Cálculos + Métodos)
 document.getElementById("btn-json").addEventListener("click", () => {
-  const blob = new Blob([JSON.stringify(medidas, null, 2)], { type: "application/json" });
-  const link = document.createElement("a");
-  link.href = URL.createObjectURL(blob);
-  link.download = "avaliacao.json";
-  link.click();
+  // Recupera anamnese salva
+  const anamnese = JSON.parse(localStorage.getItem("anamnese")) || {};
+
+  // Recupera medidas e cálculos
+  const medidas = JSON.parse(localStorage.getItem("medidas")) || {};
+  const calculos = JSON.parse(localStorage.getItem("calculos")) || {};
+  const metodos = JSON.parse(localStorage.getItem("metodos")) || {};
+
+  // Estrutura final do JSON
+  const avaliacaoCompleta = {
+    dadosGerais: {
+      dataAvaliacao: new Date().toLocaleString("pt-BR"),
+      nome: anamnese["Qual seu nome?"] || "Não informado",
+      idade: anamnese["Qual sua idade?"] || "Não informado",
+      sexo: anamnese["Qual seu sexo?"] || "Não informado"
+    },
+    anamnese: anamnese,     // Todas as respostas
+    medidas: medidas,       // Ex: peso, altura, circunferências
+    calculos: calculos,     // Ex: IMC, RCQ, % gordura
+    metodos: metodos        // Ex: protocolos usados (Pollock, Durnin, etc.)
+  };
+
+  // Salva no localStorage para a IA usar
+  localStorage.setItem("avaliacaoCompleta", JSON.stringify(avaliacaoCompleta));
+
+  // Redireciona para a IA
+  window.location.href = "ia.html";
 });
+
+
 
 // Exportar PDF
 document.getElementById("btn-exportar").addEventListener("click", () => {
@@ -250,7 +295,7 @@ document.getElementById("btn-exportar").addEventListener("click", () => {
   `;
 
   // ANAMNESE
-  relatorio.innerHTML += "<h2 style='color:#00ff88;'>Anamnese</h2>";
+  relatorio.innerHTML += `<h2 style='color:#00ff88;'>Anamnese ${questionario} </h2>`;
   for (let pergunta in anamnese) {
     const resposta = anamnese[pergunta];
     relatorio.innerHTML += `

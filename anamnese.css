@@ -45,6 +45,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1em;
+  overflow-anchor: none; /* Previne redesenho automático */
 }
 
 .mensagem {
