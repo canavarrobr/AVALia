@@ -88,7 +88,8 @@ async function askAI(message) {
     }
 
     const data = await response.json();
-    thinkingMsg.textContent = data.response;
+    thinkingMsg.innerHTML = marked.parse(data.response);
+
 
   } catch (err) {
     console.error(err);
