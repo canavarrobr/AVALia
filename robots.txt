@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://avaliase.vercel.app/sitemap.xml
+Sitemap: https://avaliase.vercel.app/canion.xml
