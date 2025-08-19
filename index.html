@@ -3,31 +3,62 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AVALℹ️🅰️ - Avaliação Física</title>
-  <link rel="stylesheet" href="index.css"> 
   
+  <!-- Título e SEO -->
+  <title>AVALiA - Avaliação Física Online com IA</title>
+  <meta name="description" content="AVALiA é uma ferramenta gratuita de avaliação física online que utiliza inteligência artificial para ajudar você a acompanhar sua saúde de forma rápida e simples.">
+  <meta name="keywords" content="avaliação física, saúde, IMC, fitness, condicionamento físico, IA, academia, bem-estar">
+  <meta name="author" content="Equipe AVALiA">
+
+  <!-- Open Graph (Facebook/LinkedIn) -->
+  <meta property="og:title" content="AVALiA - Avaliação Física Online com IA">
+  <meta property="og:description" content="Faça sua avaliação física de forma rápida e simplificada com inteligência artificial.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://avaliase.vercel.app/">
+  <meta property="og:image" content="https://avaliase.vercel.app/preview.png">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AVALiA - Avaliação Física com IA">
+  <meta name="twitter:description" content="Sua avaliação física simplificada com inteligência artificial.">
+  <meta name="twitter:image" content="https://avaliase.vercel.app/preview.png">
+
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="index.css"> 
+
+  <!-- Acessibilidade: carregamento de fonte padrão -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 <body class="tela-inicial">
-  
   <div class="container">
-    <!-- Logo / Nome da Aplicação -->
+    
+    <!-- Cabeçalho -->
     <header class="cabecalho">
-      <h1 class="titulo-app">🏋️ AVALℹ️🅰️</h1>
-      <p class="subtitulo-app">Sua avaliação física simplificada</p>
+      <h1 class="titulo-app" aria-label="AVALIA - Avaliação Física com Inteligência Artificial">
+        🏋️ AVALℹ️🅰️
+      </h1>
+      <p class="subtitulo-app">Sua avaliação física simplificada com IA</p>
     </header>
 
-    <!-- Conteúdo central -->
+    <!-- Conteúdo principal -->
     <main class="conteudo-principal">
-      <div class="animacao-fundo"></div>
-      <button id="btn-comecar" class="botao-principal">Começar Avaliação</button>
+      <div class="animacao-fundo" role="presentation"></div>
+      <button id="btn-comecar" class="botao-principal" aria-label="Iniciar avaliação física">
+        Começar Avaliação
+      </button>
     </main>
 
     <!-- Rodapé -->
     <footer class="rodape">
-      <p>© 2025 🏋️ AVALℹ️🅰️ - Protótipo Acadêmico</p>
+      <p>© 2025 🏋️ AVALℹ️🅰️ — Protótipo Acadêmico. Desenvolvido para fins educacionais.</p>
     </footer>
   </div>
 
-  <script src="index.js"></script>
+  <!-- Scripts -->
+  <script src="index.js" defer></script>
 </body>
 </html>
