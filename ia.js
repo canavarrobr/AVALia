@@ -115,5 +115,5 @@ userInput.addEventListener("keypress", (e) => {
 if (Object.keys(dadosCompletos).length === 0) {
   addMessage("Olá! Vejo que você ainda não tem dados de avaliação física. Por favor, complete o formulário de avaliação primeiro para que eu possa ajudá-lo.", "ai");
 } else {
-  addMessage(`Olá ${dadosCompletos.dadosGerais?.nome || "usuário"}! Estou analisando seus dados de avaliação física. Como posso ajudá-lo hoje?`, "ai");
+  addMessage(`Olá, ${dadosCompletos.dadosGerais?.nome || "usuário"}! Estou analisando seus dados de avaliação física. Como posso ajudá-lo hoje?`, "ai");
 }
