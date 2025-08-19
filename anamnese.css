@@ -104,3 +104,30 @@ body {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* Ajustes para mobile */
+@media (max-width: 768px) {
+  body {
+    height: 100dvh; /* Usa altura dinâmica para lidar com o teclado */
+  }
+
+  .container {
+    height: auto;
+    max-height: 100dvh;
+  }
+
+  .chat {
+    flex: 1;
+    max-height: calc(100dvh - 140px); /* reserva espaço para cabeçalho + input */
+  }
+
+  .input-area {
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
+  }
+
+  .input-area button {
+    padding: 1em; /* botão mais fácil de clicar no mobile */
+  }
+}
